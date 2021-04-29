@@ -1,15 +1,14 @@
 import React from "react";
 import { Form, Button, Row, Col, Container, Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { ArrowRight, ArrowRightCircleFill } from "react-bootstrap-icons";
 
 function ReseveMsgBar(props) {
   return (
     <>
-      <Card
+      <Card className ="shadow-lg"
         text="white"
         style={{
-          marginRight: "45%",
+          marginRight: "8%",
           backgroundColor: "#5C6BC0",
           width: "25rem",
           padding: ".5%",

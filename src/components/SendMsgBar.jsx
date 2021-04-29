@@ -1,15 +1,14 @@
 import React from "react";
 import { Form, Button, Row, Col, Container, Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { ArrowRight, ArrowRightCircleFill } from "react-bootstrap-icons";
 
 function SendMsgBar(props) {
   return (
     <>
-      <Card
+      <Card className= "shadow-lg"
         text="white"
         style={{
-          marginLeft: "35%",
+          marginLeft: "60%",
           backgroundColor: "#BA68C8",
           width: "25rem",
           padding: ".5%",

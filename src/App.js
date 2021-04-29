@@ -11,6 +11,7 @@ import chatReducer from "./redux/Reducer";
 import { reseverData, sendData } from "./redux/Action";
 import ReseveMsgBar from "./components/ReseveMsgBar";
 import SendMsgBar from "./components/SendMsgBar";
+import Chatlist from "./components/chatlist";
 
 import socketIOClient from "socket.io-client";
 const ENDPOINT = "http://localhost:3002";
@@ -72,9 +73,23 @@ function App() {
 
         <div
           style={{
+            borderRadius: "10px",
+            height: "630px",
+            marginTop: "1%",
+            marginRight: "70%",
+            width: "26%",
+            position: "fixed",
+          }}
+        >
+          <Chatlist />          
+        </div>
+
+        <div
+          style={{
             height: "50%",
             width: "70%",
-            marginTop: "45%",
+            marginLeft: "32%",
+            marginTop: "44%",
             position: "fixed",
           }}
         >
@@ -83,17 +98,27 @@ function App() {
               <Row>
                 <Col xs={12} md={10}>
                   <Form.Control
+                    className="shadow-lg"
                     text="dark"
                     size="lg"
                     type="text"
-                    style={{ borderRadius: "30px" }}
+                    style={{
+                      borderRadius: "30px",
+                      borderColor: "#FF0266",
+                      borderWidth: "3px",
+                    }}
                     onChange={(e) => setMessage(e.target.value)}
                   />
                 </Col>
                 <Col xs={6} md={1}>
                   <Button
-                    size="lg"
-                    style={{ borderRadius: "60px" }}
+                    className="shadow-lg rounded-pill"
+                    style={{
+                      width: "70px",
+                      height: "50px",
+                      borderColor: "#FF0266",
+                      borderWidth: "2px",
+                    }}
                     onClick={() => sendTO()}
                   >
                     <i>
