@@ -26,6 +26,7 @@ function App() {
   // const [sendmessage, setSendmessage] = useState([]);
   const [socketMessage, setSocketMessage] = useState([]);
   //const [sendTO, setsendTo] = useState(true);
+  const [roomGrp, setroomGrp] = useState("")
   let sendmessage = [];
 
   useEffect(() => {
@@ -35,28 +36,44 @@ function App() {
 
     socket.on("message", (data) => {
       setSocketMessage(data);
+      console.log("msg");
+      
       dispatch(reseverData(data));
     });
 
     getMeg((result) => {
       setsendMsg(result);
     });
-  }, []);
+  },[]);
 
   const sendTO = () => {
     sendmessage = {
       msg: message,
-      time: response,
+      time: response.response,
       send: true,
     };
-    socket.emit("messageAll", sendmessage);
+    //socket.broadcast.emit("broadmessage", sendmessage);
+    socket.emit("roomMessage", {room:roomGrp, sendmessage});
     dispatch(sendData(sendmessage));
+  };
+
+  const roomMessage = () => {
+    socket.emit("roomMessage", {room:roomGrp, message})
+  }
+
+  const roomSet = (roomId) => {
+
+    roomId.status === true
+      ? socket.emit("subscribe", roomId.roomid)
+      : socket.emit("unsubscribe", roomId.roomid);
+
+     setroomGrp( roomId.roomid) 
   };
 
   sendMsg.map((ele) => {
     //console.log("sdfsd",ele.msg);
   });
-  //console.log("resp",response);
+  console.log("resp",response);
   let store = useSelector((state) => state);
   console.log("store", store);
 
@@ -81,7 +98,7 @@ function App() {
             position: "fixed",
           }}
         >
-          <Chatlist />          
+          <Chatlist Grp ={response.Grp} roomSet={(id) => roomSet(id)} />
         </div>
 
         <div
